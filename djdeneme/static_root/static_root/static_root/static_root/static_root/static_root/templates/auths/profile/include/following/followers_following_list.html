@@ -1,0 +1,47 @@
+{% load following_system %}
+<div id="modal-following-list" class="row following-list">
+    {% for row in following %}
+        <div class="col-lg-12" id="modal-follow">
+            {% if follow_type == "followedes" %}
+
+                <img src="{{ row.followed.userprofile.get_profile_photo }}" class="img-rounded" width="50px"
+                     height="50px">
+                <span takip_edilen = "{{ row.followed.username }}" takip_eden = "{{ request.user }}"><b><a
+                        href="{% url 'user-profile' row.followed.username %}"
+                        style="color:black; background-color: none;">{{ row.followed.username }}</a></b></span>
+                {% if row.followed != request.user %}
+                        {% if row.followed|who_is_my_followedes:my_followings %}
+                        {% include 'auths/profile/include/button_include/unfollow_button.html' %}
+                        {% else %}
+                            {% include 'auths/profile/include/button_include/follow_button.html' %}
+                    {% endif %}
+                {% endif %}
+                <br><br>
+
+
+            {% elif follow_type == "followers" %}
+                <img src="{{ row.follower.userprofile.get_profile_photo }}" class="img-rounded" width="50px"
+                     height="50px">
+                <span takip_edilen = "{{ row.follower.username }}" takip_eden = "{{ request.user }}"><b><a href="{% url 'user-profile' row.follower.username %}"
+                            style="color:black; background-color: none;">{{ row.follower.username }}</a></b></span>
+                {% if row.follower != request.user %}
+                    {% if row.follower|who_is_my_followedes:my_followings %}
+                        {% include 'auths/profile/include/button_include/unfollow_button.html' %}
+                        {% else %}
+                            {% include 'auths/profile/include/button_include/follow_button.html' %}
+                    {% endif %}
+
+                {% endif %}
+                <br><br>
+            {% endif %}
+        </div>
+    {% empty %}
+         <p class="lead text-center text-danger">Bir sonuç bulunamadı.</p>}
+        {% if follow_type == "followers" %}
+            <p class="lead text-center text-danger">Önce birilerinin seni takip etmesi lazım.</p>
+        {% endif %}
+         {% if follow_type == "followedes" %}
+            <p class="lead text-center text-danger">Önce birilerini takip etmen lazım.</p>
+        {% endif %}
+    {% endfor %}
+</div>

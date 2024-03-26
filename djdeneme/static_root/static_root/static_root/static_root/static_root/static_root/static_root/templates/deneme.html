@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block ust_icerik %}
+    <script type="text/javascript" rel="script">
+        $(document).ready(function () {
+
+            $("#ogrencigetir").click(function () {
+                $.ajax(
+                    {
+                        url:"{% url 'denemeajax2' %}",
+                        type:"GET",
+                        dataType: 'json',
+                        data:{},
+                        success:function (data) {
+                            console.log(data);
+                            $("#gelenmesaj").html(data.html)
+                        }
+                    }
+                )
+            });
+
+            $("#ajaxdenemeform").submit(function (e) {
+                e.preventDefault();
+                var $this = $(this);
+                var type = $this.attr('method');
+                var action = $this.attr('action');
+                var data = $this.serialize();
+
+                $.ajax({
+                    url: action,
+                    type: type,
+                    data: data,
+                    success: function (data) {
+                        alert(data.he)
+                    }
+
+                })
+                console.log(data);
+                console.log(action);
+                console.log(type);
+            });
+
+            $('#naber').click(function () {
+                var $this = $(this)
+                var url = "{% url 'deneme' %}"
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        $this.html(data.msg)
+                        console.log(data)
+                    }
+                })
+            })
+        })
+
+    </script>
+
+{% endblock %}
+
+
+{% block icerik %}
+
+    <div class="row">
+        <div class="col-lg-offset-5">
+
+            <button class="button btn-success">
+                selam
+            </button>
+            <button id='naber' class="button btn-danger" name="aliveli">
+                hihihi
+            </button>
+            <form action="{% url 'denemeajax' %}" method="post" id="ajaxdenemeform">
+                {% csrf_token %}
+                <input type="hidden" name="isim" value="ugur">
+                <button type="submit" class="btn btn-success">Ajax isteği gönder</button>
+
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>Render to string kullanım</h1>
+            <button id="ogrencigetir" class="btn btn-success">Öğrenci Getir</button>
+        </div>
+        <div id="gelenmesaj">
+
+        </div>
+    </div>
+{% endblock %}

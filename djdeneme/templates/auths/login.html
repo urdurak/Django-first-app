@@ -1,0 +1,50 @@
+{% extends 'base_is_anonymous.html' %}
+{% load static %}
+{% block title %}
+    Login
+{% endblock %}
+
+{% block icerik %}
+    <div class="row pull-center table">
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger col-lg-3  col-lg-offset-2">
+                    {{ error|safe }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span>&times;</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="{% url 'user-login' %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="row table">
+                    <div class="col-lg-10 ">
+
+                        <div class="form-group col-lg-3 col-lg-offset-5">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <span class="text-danger">{{ error }}</span>
+                                {% endfor %}
+                            {% else %}
+                                {% if field.help_text %}
+                                    <span class="text-success">{{ field.help_text }}</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+            <div class="row col-lg-offset-5"><input type="submit" value="Giriş yap" class="btn btn-success"></div>
+        </form>
+    <br>
+        <div class="row col-lg-offset-4"><form action="{% url 'register' %}"><b> Bir hesabın yok ise</b> &nbsp;<input type="submit"
+                                                                                     class="btn btn-sm btn-success"
+                                                                                     value="Kayıt Ol"></form></div>
+    </div>
+{% endblock %}

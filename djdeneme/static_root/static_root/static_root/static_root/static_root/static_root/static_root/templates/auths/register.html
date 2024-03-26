@@ -1,0 +1,37 @@
+{% extends 'base_is_anonymous.html' %}
+{% load static %}
+{% block title %}
+    Register
+{% endblock %}
+
+{% block icerik %}
+    <div class="row pull-center table">
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="row">
+                    <div class="col-lg-9 col-lg-offset-4">
+                        <div class="form-group col-lg-4">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <span class="text-danger">{{ error }}</span>
+                                {% endfor %}
+                            {% else %}
+                                {% if field.help_text %}
+                                    <span class="text-success">{{ field.help_text }}</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+            <div class="row col-lg-offset-6"><input type="submit" value="Kayıt Ol" class="btn btn-success"></div>
+        </form>
+    </div>
+    <br>
+    <div class="row col-lg-offset-5"><form action="{% url 'user-login' %}"><b> Bir hesabın var ise</b> &nbsp;<input type="submit" class="btn btn-success" value="Giriş Yap"></form></div>
+{% endblock %}

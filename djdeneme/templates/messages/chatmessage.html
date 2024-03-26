@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Private Chat | {{ request.user }}
+{% endblock %}
+
+
+
+{% block icerik %}
+    <div class="chat-container">
+        <div class="user-list-box">
+            {% include 'messages/include/chat-user-list.html' %}
+
+        </div>
+
+        <!----user list box end-->
+
+        <!----chat-box start-->
+        <div class="chat-box">
+            <div class="row">
+                {% for j in roomlar2 %}
+                    {% for i in messg %}
+                        {% if j.owner1 == i.receiver and j.owner2 == i.sender or j.owner1 == i.sender and j.owner2 == i.receiver %}
+                            {% if i.receiver == request.user %}
+                                <div class="sender-msg">
+                            <span class="msg-set">
+                                {{ i.icerik }}</span>
+                                </div>
+                            {% endif %}
+                            {% if i.sender == request.user %}
+                                <div class="receiver-msg">
+                        <span class="msg-set">
+                            {{ i.icerik }}
+                        </span>
+                                </div>{% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="send-box" style="position: absolute;display: block;margin-left: 300px;margin-top: 473px">
+            {% for j in roomlar2 %}
+                <form id="sendmsg" method="post" action="{% url 'send_message' j.room_id %}">{% endfor %}
+            {% csrf_token %}
+            <div class="pull-center"
+                 style="float: left;margin-top: auto;width: 539px;position: relative"
+                 id="icerik">{{ form.icerik }}</div>
+            <div class="btn-group" style="position: absolute">
+                <button type="submit" class="btn btn-primary" style="margin-top: auto">
+                    Send
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

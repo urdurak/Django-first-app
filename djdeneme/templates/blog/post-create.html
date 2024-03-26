@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ "Post Create" }}
+{% endblock %}
+{% block icerik %}
+    <div class="row">
+        <div class="col-lg-9 col-lg-offset-4">
+            <h1 class="page-header">Post Create</h1>
+            <form action="{% url 'post-create' %}"  enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                {% include 'blog/include/form-include.html' %}
+                <div class="form-group col-lg-4">
+                    <input type="submit" value="kaydet" class="btn btn-sm btn-success pull-right">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

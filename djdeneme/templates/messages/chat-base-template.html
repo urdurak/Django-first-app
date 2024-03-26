@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Gelen Kutusu
+{% endblock %}
+
+{% block ust_icerik %}
+{% endblock %}
+{% block icerik %}
+    <div class="chat-container">
+        <div class="user-list-box">
+
+            {% include 'messages/include/chat-user-list.html' %}
+
+        </div>
+
+        <!----user list box end-->
+        <!----chat-box start-->
+        <div class="chat-box">
+            <div class="row">
+                <div class="pull-center" style="text-align: center">
+                    <div style="margin: 200px;position: absolute;"><h2>Birine mesaj gönder</h2></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

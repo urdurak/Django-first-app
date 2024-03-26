@@ -1,0 +1,93 @@
+.m-t-40 {
+    margin-top: 50px;
+}
+
+.cerceve{
+    display: block;
+    position: absolute;
+    width: 600px;
+    height: auto;
+    margin-top: 50px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}
+
+.profile-p {
+    height: 55px;
+    width: 55px;
+    float: left;
+}
+
+.head-box {
+    display: block;
+    height: 55px;
+    margin-top: 10px;
+}
+
+.photo-box {
+    display: block;
+    width: 55px;
+    height: auto;
+}
+
+.name-head-box {
+    display: block;
+    margin-top: 10px;
+    margin-left: 80px;
+    width: 300px;
+    height: auto;
+}
+
+.post-image {
+    display: block;
+    width: 100%;
+    height: 75%;
+}
+
+.like-box {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.lcs-size {
+    width: 30px;
+    height: 30px;
+}
+
+.lcs-space {
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:active {
+    color: black;
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+a:disabled {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+span{
+    color: green;
+}

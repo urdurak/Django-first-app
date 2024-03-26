@@ -1,0 +1,10 @@
+<div class="text-center">
+    <ul class="nav nav-pills">
+        <li role="presentation" class="{% if page == 'user-profile' %}active{% endif %}"><a href="{% url 'user-profile' user.username %}">Gönderiler</a></li>
+        <li role="presentation" class="{% if page == 'my-favorite' %}active{% endif %}"><a href="{% url 'my-favorite' user.username %}">Favorilerim</a></li>
+        <li role="presentation" class=""><a href="#"></a></li>
+    </ul>
+    <ul>
+        <hr>
+    </ul>
+</div>

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Ayarlar
+{% endblock %}
+
+{% block icerik %}
+    <div class="row" style="padding-top: 50px">
+        <div class="col-lg-offset-2">
+            <table class="text-center table-bordered active" style="width: 200px;height: 100px; ">
+                <tr>
+                    <td><a href="{% url 'user-settings' %}">Profili Düzenle</a></td>
+                </tr>
+                <tr >
+                    <td><a href="{% url 'user-password-change' %}">Şifreni Değiştir</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-8 pull-center">
+            <form action="{% url 'user-settings' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="row">
+                        <div class=" col-lg-offset-4">
+                            <div class="form-group">
+                                <div class="col-lg-2">
+                                    {{ field.label_tag }}
+                                </div>
+                                <div class="col-lg-4">
+                                    {{ field }}
+                                </div>
+
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <span class="text-danger">{{ error }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+                <br>
+                <div class="row col-lg-offset-7"><input type="submit" value="Kaydet " class="btn btn-success"></div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

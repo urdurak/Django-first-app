@@ -1,0 +1,20 @@
+{% extends 'auths/profile/user_profile_base.html' %}
+{% load static %}
+
+{% block profil_icerik %}
+    <div class="row col-lg-12 col-lg-offset-3">
+
+        {% for post in user.favorite_blog.all %}
+            <table>
+                <tr><h2><a href="{{ post.blog.get_absolute_url }}"> {{ post.blog.title }}</a>&nbsp;
+                </h2></tr>
+                {% if post.blog.get_image %}
+                    <div class="row "><img src="{{ post.blog.get_image }}" width="500" height="250"></div>
+                {% endif %}
+                <tr><h3>{{ post.blog.icerik| truncatechars:250 }} -- <span
+                        class="glyphicon glyphicon-time"></span>{{ post.blog.created_date }}</h3></tr>
+
+            </table>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Post Update
+{% endblock %}
+{% block ust_icerik %}
+
+{% endblock %}
+{% block icerik %}
+    <div class="row">
+        <div class="col-lg-9 col-lg-offset-4">
+            <h1 class="page-header">Post Update</h1>
+            <form action="{% url 'post-update' blog.slug %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                {% include 'blog/include/form-include.html' %}
+                <div class="row">
+                    <input type="submit" value="Kaydet" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

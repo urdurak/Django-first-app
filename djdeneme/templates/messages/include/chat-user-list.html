@@ -1,0 +1,24 @@
+{% for j in rooms %}
+    {% if j.owner1 == request.user or j.owner2 == request.user %}
+        <a href="{% url 'personal-inbox' j.room_id %}">
+            <div class="user-info">
+                {% if request.user == j.owner1 %}
+                    <div class="user-photo-box"><img class="user-p-photo"
+                                                     src="{{ j.owner2.userprofile.get_profile_photo }}">
+                    </div>
+                    <div class="user-name">
+                        {{ j.owner2 }}</div>
+                {% else %}
+                    <div class="user-photo-box"><img class="user-p-photo"
+                                                     src="{{ j.owner1.userprofile.get_profile_photo }}">
+                    </div>
+
+                    <div class="user-name">
+                        {{ j.owner1 }}</div>
+                {% endif %}
+
+            </div>
+
+        </a>{% endif %}
+{% endfor %}
+

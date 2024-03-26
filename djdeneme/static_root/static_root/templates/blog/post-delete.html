@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Post Detail
+{% endblock %}
+{% block ust_icerik %}
+
+{% endblock %}
+{% block icerik %}
+    <div style="margin: 0 auto; width: 500px" class="row">
+        <div class="col-lg-13">
+
+            <h2 class="page-header"><a href="{% url 'post-list' %}"><span role="button"
+                                                                          class="btn btn-group-lg btn-primary  glyphicon glyphicon-remove"></span></a>{{ blog.title|upper }}
+                <small class="pull-right"><span
+                        class="glyphicon glyphicon-time ">&nbsp;{{ blog.created_date }}</span></small></h2>
+            <h3 class="table">{{ blog.icerik }}</h3>
+
+        </div>
+    </div>
+{% endblock %}
